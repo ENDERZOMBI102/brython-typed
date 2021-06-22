@@ -1,6 +1,7 @@
 import re
 from typing import Dict, Union, Iterable, Any
 
+# to not import browser when generating all the tags
 if __name__ != '__main__':
 	from browser import DOMNode
 	POSSIBLE_TAG_CHILD = Union[str, int, float, DOMNode]

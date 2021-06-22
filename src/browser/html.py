@@ -2,7 +2,7 @@ import re
 from typing import Dict, Union, Iterable, Any
 
 if __name__ != '__main__':
-	from browser import DOMNode
+	from . import DOMNode
 	POSSIBLE_TAG_CHILD = Union[str, int, float, DOMNode]
 
 

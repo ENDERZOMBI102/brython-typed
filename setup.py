@@ -25,8 +25,8 @@ setup(
         "Operating System :: OS Independent"
     ],
 
-    package_dir={"": "src/brython-typed"},
-    packages=['browser', 'browser.widgets'],
+    package_dir={"": "src"},
+    packages=find_packages(where='src'),
     py_modules=['interpreter', 'javascript', 'webtypes'],
 
     python_requires='>=3.7, <3.10'
