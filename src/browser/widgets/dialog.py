@@ -2,10 +2,42 @@
 
 from typing import Union, Optional, Tuple, List
 
-from browser import html
+from .. import html
+from .._BaseClasses import BaseDialog
 
 
-class InfoDialog:
+class Dialog(BaseDialog):
+
+	panel: html.DIV
+	""" The DIV element where additional elements can be inserted to build the dialog box. """
+	ok_button: html.BUTTON
+	""" The "Ok" button, if present. An event handler should be defined for the "click" event. """
+
+	def __init__(
+			self,
+			title,
+			*,
+			top=None,
+			left=None,
+			default_css=True,
+			ok_cancel: Optional[ Union[ bool, Tuple[str, str], List[ str ] ] ] = False
+		):
+		"""
+		\t
+		:param title: The box title.
+		:param top: See left.
+		:param left: They are the position of the box relatively to the top and left borders of the visible part
+			of the document. By default, the box is centered.
+		:param default_css: Specifies if the style sheet provided by the module should be used.
+			If set to False, the styles defined in the HTML page are used.
+		:param ok_cancel: specifies if buttons "Ok" and "Cancel" should be displayed.
+			If the value passed is a 2-element list or tuple of strings, these stings will be printed in the buttons;
+			if the value is True, strings "Ok" and "Cancel" are printed
+		"""
+
+
+# noinspection PyMissingConstructor
+class InfoDialog(Dialog):
 
 	def __init__(
 			self,
@@ -33,7 +65,8 @@ class InfoDialog:
 		"""
 
 
-class EntryDialog:
+# noinspection PyMissingConstructor
+class EntryDialog(Dialog):
 
 	value: str
 
@@ -58,34 +91,4 @@ class EntryDialog:
 			If set to False, the styles defined in the HTML page are used.
 		:param ok: Specifies if an "Ok" button should be present.
 			If the value passed is a string, it will be printed in the button; if is is True, the string "Ok" is printed.
-		"""
-
-
-class Dialog:
-
-	panel: html.DIV
-	""" The DIV element where additional elements can be inserted to build the dialog box. """
-	ok_button: html.BUTTON
-	""" The "Ok" button, if present. An event handler should be defined for the "click" event. """
-
-	def __init__(
-			self,
-			title,
-			*,
-			top=None,
-			left=None,
-			default_css=True,
-			ok_cancel: Optional[ Union[ bool, Tuple[str, str], List[ str, str ] ] ] = False
-		):
-		"""
-		\t
-		:param title: The box title.
-		:param top: See left.
-		:param left: They are the position of the box relatively to the top and left borders of the visible part
-			of the document. By default, the box is centered.
-		:param default_css: Specifies if the style sheet provided by the module should be used.
-			If set to False, the styles defined in the HTML page are used.
-		:param ok_cancel: specifies if buttons "Ok" and "Cancel" should be displayed.
-			If the value passed is a 2-element list or tuple of strings, these stings will be printed in the buttons;
-			if the value is True, strings "Ok" and "Cancel" are printed
 		"""
