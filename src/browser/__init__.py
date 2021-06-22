@@ -42,6 +42,7 @@ class DOMEvent:
 class DOMNode:
 	""" The class of DOM nodes """
 	attrs: Dict[ str, Any ]
+	innerHTML: str
 	# --- brython specific properties ---
 	abs_left: int
 	""" Position of the element relatively to the document left border (1) """
@@ -116,6 +117,32 @@ class DOMNode:
 		pass
 
 
+class _Query:
+
+	def getfirst(self, key: str, default: Any = None) -> Any:
+		"""
+		Returns the first value for key.
+		If no value is associated with the key, returns default if provided, else returns None.
+		"""
+
+	def getlist(self, key: str) -> List[Any]:
+		"""
+		Returns the list of values associated with key (the empty list if there is no value for the key).
+		"""
+
+	def getvalue( self, key: str, default: Any = None ) -> Any:
+		"""
+		Same as document.query[key], but returns default or None if there is no value for the key.
+		"""
+
+	def __getitem__(self, item: str) -> Any:
+		"""
+		Returns the value associated with key.
+		If a key has more than one value (which might be the case for SELECT tags with the attribute MULTIPLE set, or for <INPUT type="checkbox"> tags), returns a list of the values.
+		Raises KeyError if there is no value for the key.
+		"""
+
+
 class _Document(DOMNode):
 
 	body: DOMNode
@@ -136,6 +163,8 @@ class _Document(DOMNode):
 		\t
 		:param elt: The element to append
 		"""
+
+	query: _Query
 
 	def __getitem__(self, item: str):
 		pass
@@ -181,5 +210,34 @@ def run_script(src: str, name: str = '') -> None:
 	"""
 
 
-class window:
+# noinspection PyPropertyDefinition
+class _Window:
 	""" An object that represents the browser window """
+
+	document: _Document
+
+	@property
+	def innerHeight(self) -> int:
+		""" The inner height of the browser window (in pixels). """
+
+	@property
+	def innerWidth(self) -> int:
+		""" The inner width of the browser window (in pixels). """
+
+	def open(self) -> None:
+		""" Open a new window. """
+
+	def close(self) -> None:
+		""" Close the current window. """
+
+	def moveTo(self) -> None:
+		""" Move the current window. """
+
+	def resizeTo(self) -> None:
+		""" Resize the current window. """
+
+	def print( self ) -> None:
+		""" To open a print dialog (to a printer). """
+
+
+window: _Window
