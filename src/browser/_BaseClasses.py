@@ -1,5 +1,5 @@
 """ PRIVATE MODULE, DO NOT USE """
-from typing import Dict, Any, List, Optional, Union
+from typing import Dict, Any, List, Optional, Union, Callable
 
 
 class BaseDialog:
@@ -9,11 +9,17 @@ class BaseDialog:
 class DOMEvent:
 	""" The class of DOM events """
 
+	def preventDefault(self):
+		""" Prevent default behavior from happening. """
+
 
 class DOMNode:
 	""" The class of DOM nodes """
 	attrs: Dict[ str, Any ]
 	innerHTML: str
+	events: Callable[ [str], None ]
+	draggable: bool
+	value: str
 	# --- brython specific properties ---
 	abs_left: int
 	""" Position of the element relatively to the document left border (1) """
@@ -37,7 +43,10 @@ class DOMNode:
 	width: int
 	""" Element width in pixels (2) """
 
-	def bind(self, target: str, event: str):
+	def bind(self, event: str, callback: Callable):
+		pass
+
+	def unbind(self, event: str, callback: Callable):
 		pass
 
 	def clear( self ):

@@ -6,12 +6,16 @@ from .. import html
 from .._BaseClasses import BaseDialog
 
 
+# noinspection PyPropertyDefinition
 class Dialog(BaseDialog):
 
-	panel: html.DIV
-	""" The DIV element where additional elements can be inserted to build the dialog box. """
-	ok_button: html.BUTTON
-	""" The "Ok" button, if present. An event handler should be defined for the "click" event. """
+	@property
+	def panel( self ) -> html.DIV:
+		""" The DIV element where additional elements can be inserted to build the dialog box. """
+
+	@property
+	def ok_button( self ) -> html.BUTTON:
+		""" The "Ok" button, if present. An event handler should be defined for the "click" event. """
 
 	def __init__(
 			self,
@@ -34,6 +38,9 @@ class Dialog(BaseDialog):
 			If the value passed is a 2-element list or tuple of strings, these stings will be printed in the buttons;
 			if the value is True, strings "Ok" and "Cancel" are printed
 		"""
+
+	def close( self ) -> None:
+		""" Closes the dialog(?). """
 
 
 # noinspection PyMissingConstructor
