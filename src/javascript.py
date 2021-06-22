@@ -51,6 +51,7 @@ class Number(int):
 	def new( self, number: Union[ str, int, float ] ) -> float:
 		pass
 
+
 class RegExp:
 	"""
 	Constructor of "regular expression" objects, using the Javascript-specific syntax,
@@ -74,4 +75,7 @@ class String:
 
 
 class UNDEFINED( type(None) ):
-	""" The Javascript object undefined. Can be used to test if a Javascript object is undefined. """
+	"""
+	The Javascript object undefined.
+	Can be used to test if a Javascript object is undefined.
+	"""
