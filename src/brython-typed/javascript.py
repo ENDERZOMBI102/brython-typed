@@ -34,16 +34,21 @@ class JSON:
 class Math:
 	""" Object for mathematical functions and constants. """
 
+	# TODO: ADD MORE METHODS, USE http://brython.info/console.html TO FIND MORE
+	@staticmethod
+	def sqrt(num: Union[float, int]) -> Union[float, int]:
+		pass
 
-class NULL:
+
+class NULL( type(None) ):
 	""" The Javascript object null. Can be used to test if a Javascript object is null. """
 
 
-class Number:
+class Number(int):
 	""" Constructor for objects of type "number". """
 
 	@staticmethod
-	def new( self, number: Union[ str, int, float ] ) -> 'Number':
+	def new( self, number: Union[ str, int, float ] ) -> float:
 		pass
 
 class RegExp:
@@ -68,5 +73,5 @@ class String:
 		pass
 
 
-class UNDEFINED:
+class UNDEFINED( type(None) ):
 	""" The Javascript object undefined. Can be used to test if a Javascript object is undefined. """
