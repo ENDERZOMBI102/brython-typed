@@ -21,6 +21,8 @@ setup(
         'License :: Public Domain',
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.10',
         'Programming Language :: Python :: 3 :: Only',
         "Operating System :: OS Independent"
     ],
@@ -29,5 +31,5 @@ setup(
     packages=find_packages(where='src'),
     py_modules=['interpreter', 'javascript', 'webtypes'],
 
-    python_requires='>=3.7, <3.10'
+    python_requires='>=3.7'
 )
